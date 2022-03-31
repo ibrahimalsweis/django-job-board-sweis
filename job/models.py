@@ -1,4 +1,3 @@
-from turtle import title
 from django.db import models
 
 # Create your models here.
@@ -15,7 +14,15 @@ class Job(models.Model):
     published  = models.DateTimeField(auto_now=True)
     Vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
-    # category
+    category = models.ForeignKey('Category',on_delete=models.CASCADE)
     experience = models.IntegerField(default=1)
     def __str__(self):
         return self.title
+
+
+class Category(models.Model):
+    name  = models.CharField(max_length=20)
+
+
+    def __str__(self):
+        return self.name
